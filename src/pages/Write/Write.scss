@@ -1,0 +1,60 @@
+.app__write {    
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.write {
+  width: 60%;
+  min-height: 100vh;
+  margin-top: 2rem;  
+}
+
+.write-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  img {
+    height: 400px;
+    width: 100%;
+  }
+
+  input {
+    outline: none;
+    border: solid 1px gray;
+    font-family: monospace;
+  }
+}
+
+.write-edit {
+  display: flex;
+  flex-direction: column;
+  
+  .write-title {
+    font-size: 3rem;
+    padding: 1rem .5rem;
+    border: none;
+    outline: none;     
+    font-family: monospace;
+  }
+
+  .write-content {
+    padding: 1rem;
+    outline: none;
+    border: none;
+    font-size: 1.25rem;
+    min-height: 200px;
+  }
+}
+
+.publish-btn  {
+  color: white;
+  background-color: black;
+  padding: 10px 30px;
+  font-size: 1.3rem;
+  border-radius: 6px;
+  font-family: monospace;
+  cursor: pointer;
+}

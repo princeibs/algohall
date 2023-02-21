@@ -1,0 +1,52 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l4
+txna ApplicationArgs 0
+byte "buyCoffee"
+==
+bnz main_l3
+err
+main_l3:
+byte "COFFEECOUNT"
+byte "COFFEECOUNT"
+app_global_get
+txna ApplicationArgs 1
+btoi
++
+app_global_put
+int 1
+return
+main_l4:
+txn NumAppArgs
+int 4
+==
+assert
+txn Note
+byte "algohall:uv0"
+==
+assert
+byte "SLUG"
+txna ApplicationArgs 0
+app_global_put
+byte "TITLE"
+txna ApplicationArgs 1
+app_global_put
+byte "CONTENT"
+txna ApplicationArgs 2
+app_global_put
+byte "THUMBNAIL"
+txna ApplicationArgs 3
+app_global_put
+byte "AUTHOR"
+txn Sender
+app_global_put
+byte "DATEPUBLISHED"
+global LatestTimestamp
+app_global_put
+byte "COFFEECOUNT"
+int 0
+app_global_put
+int 1
+return

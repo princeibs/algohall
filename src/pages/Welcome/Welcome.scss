@@ -1,0 +1,38 @@
+.app__welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  min-height: 100vh; 
+}
+
+.welcome-title {
+  font-size: 2rem;
+  margin: 1rem;
+
+  span {
+    color: rgb(128, 115, 0);
+  }
+}
+
+.welcome-sub {
+  margin: 1rem;
+  font-weight: 600;
+}
+
+.welcome-text {
+  margin: 2rem;
+  
+  span {
+    color: white;
+    background-color: rgb(128, 117, 0);
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:active {
+      outline: solid 1px gray;
+    }
+  }
+}
