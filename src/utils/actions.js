@@ -13,7 +13,7 @@ import {
 /* eslint import/no-webpack-loader-syntax: off */
 import approvalProgram from "!!raw-loader!../contracts/blog_approval.teal";
 import clearProgram from "!!raw-loader!../contracts/blog_clear.teal";
-import {base64ToUTF8String, utf8ToBase64String} from "./conversions";
+import {base64ToUTF8String, utf8ToBase64String, stringToMicroAlgos} from "./conversions";
 
 class Blog {
     constructor(slug, title, content, thumbnail, author, datePublished, coffeeCount, appId) {
@@ -83,6 +83,47 @@ export const createBlogAction = async (senderAddress, blog) => {
     let appId = transactionResponse['application-index']
 
     return appId
+}
+
+// Tip author
+export const tipAuthor = async(senderAddress, blog, coffee) => {
+    let params = await algodClient.getTransactionParams().do()
+
+    // Build required app args as Uint8Array
+    let buyArg = new TextEncoder().encode("buyCoffee")
+    let countArg = algosdk.encodeUint64(coffee)
+    let txnArgs = [buyArg, countArg] 
+
+    // Create ApplicationCallTxn
+    let appCallTxn = algosdk.makeApplicationCallTxnFromObject({
+        from: senderAddress,
+        appIndex: blog.appId,
+        onComplete: algosdk.OnApplicationComplete.NoOpOC,
+        suggestedParams: params,
+        appArgs: txnArgs
+    })
+
+    // Create PaymentTxn
+    let paymentTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+        from: senderAddress,
+        to: blog.author,
+        amount: stringToMicroAlgos(coffee),
+        suggestedParams: params
+    })
+
+    let txnArray = [appCallTxn, paymentTxn]
+
+    // Create group transaction out of previously build transaction
+    let groupId = algosdk.computeGroupID(txnArray)
+    for (let i = 0; i < 2; i++) txnArray[i].group = groupId;
+
+    // Sign and submit group transaction
+    let signedTxn = await myAlgoConnect.signTransaction(txnArray.map(txn => txn.toByte()));
+
+    let tx = await algodClient.sendRawTransaction(signedTxn.map(txn => txn.blob)).do();
+
+    // Wait for group transaction to be confirmed
+    await algosdk.waitForConfirmation(algodClient, tx.txId, 4)
 }
 
 // Get all blogs
