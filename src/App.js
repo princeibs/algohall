@@ -54,7 +54,7 @@ const App = () => {
           <Route path="/" element={<Home connectWallet={connectWallet} address={address} />} />
           <Route path="/write" element={<Write address={address} />} />
           <Route path="/welcome" element={<Welcome connect={connectWallet} />} />
-          <Route path="/blog/:appId" element={<BlogDetails />} />
+          <Route path="/blog/:appId" element={<BlogDetails address={address} fetchBalance={fetchBalance}/>} />
         </Routes>
       </Router>
 

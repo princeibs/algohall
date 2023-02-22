@@ -91,13 +91,13 @@ export const tipAuthor = async(senderAddress, blog, coffee) => {
 
     // Build required app args as Uint8Array
     let buyArg = new TextEncoder().encode("buyCoffee")
-    let countArg = algosdk.encodeUint64(coffee)
+    let countArg = algosdk.encodeUint64(Number(coffee))
     let txnArgs = [buyArg, countArg] 
 
     // Create ApplicationCallTxn
     let appCallTxn = algosdk.makeApplicationCallTxnFromObject({
         from: senderAddress,
-        appIndex: blog.appId,
+        appIndex: Number(blog.appId),
         onComplete: algosdk.OnApplicationComplete.NoOpOC,
         suggestedParams: params,
         appArgs: txnArgs

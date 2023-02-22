@@ -3,29 +3,39 @@ import coffeeImage from "../../assets/coffee_img.png";
 import { useParams } from "react-router";
 import { truncateAddress } from "../../utils/conversions";
 import "./BlogDetails.scss";
-import { getBlog } from "../../utils/actions";
+import { getBlog, tipAuthor } from "../../utils/actions";
 import { readingTime } from "reading-time-estimator";
 
-const BlogDetails = () => {
+const BlogDetails = ({ address, fetchBalance }) => {
   const [coffeeQty, setCoffeeQty] = useState(1);
+  const [loading, setLoading] = useState(false)
   const [blog, setBlog] = useState();
   const { appId } = useParams();
 
   const tip = async () => {
-    try {
-   
-    console.log("Tipped author "+coffeeQty+" Coffee")
-    } catch (e) {
-      console.log({ e });
-    }
+    setLoading(true)
+    await tipAuthor(address, blog, coffeeQty)
+      .then(() => {
+        fetchBalance(address)
+        blogDetails()
+        alert("Successfully tipped author");
+      })
+      .catch(e => console.log("Error tipping author: " + e))
+      .finally(() => setLoading(false));
+    console.log("Tipped author " + coffeeQty + " Coffee")
+
   };
 
   const blogDetails = useCallback(async () => {
     try {
+      setLoading(true)
       setBlog(await getBlog(appId));
     } catch (e) {
-      console.log({ e });
+      console.log(e);
+    } finally {
+      setLoading(false)
     }
+    
   });
 
   useEffect(() => {
@@ -34,7 +44,7 @@ const BlogDetails = () => {
 
   return (
     <>
-      {blog ? (
+      {!loading && blog ? (
         <div className="app__details">
           <div className="details">
             <img src={blog.thumbnail} />
