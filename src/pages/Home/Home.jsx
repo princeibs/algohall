@@ -38,7 +38,7 @@ const Home = ({connectWallet, address}) => {
       {address ? (
         <>
           <div className="app__app">
-            <div className="app-heading">Recently Published Blogs</div>
+            <h2 className="app-heading">Recently Published Blogs</h2>
             {!loading ? (
               <div className="app-body">
                 {allBlogs?.map((blog) => (

@@ -10,8 +10,11 @@
   color: white;
   font-size: 50px;
   font-weight: 700;
-  font-style: italic;
+  font-family: monospace;
   margin: 1rem;
+  border-radius: 15px;
+  padding: 5px 5px;
+  background-color: rgba(245, 222, 179, 0.456);
 }
 
 .nav-links {
@@ -23,6 +26,9 @@
     color: white;
     margin: 1rem;
     margin-bottom: .5rem;
+    padding: 5px 5px;
+    border-radius: 5px;
+    background-color: rgba(245, 222, 179, 0.495);
   }
 }
 
@@ -42,7 +48,7 @@
   }
 
   .nav-end--logout {
-    background-color: black;
+    background-color: rgb(252, 66, 97);
     font-size: .8rem;
     font-weight: 700;
     text-align: center;

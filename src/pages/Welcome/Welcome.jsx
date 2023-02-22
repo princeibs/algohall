@@ -6,14 +6,14 @@ const Welcome = ({connect}) => {
   return (
     <div className="app__welcome">
       <div className="welcome-title">
-        Welcome to <span>Algo Hall</span>
+        <span>Algo Hall</span>
       </div>
       <div className="welcome-sub">
-        The leading decentralised blogging platform
+        The all-in-one platform for micro blogging
       </div>
-      <img height={"500px"} width={"500px"} style={{borderRadius: "15px"}} src={algohallCover}/>
+      <img height={"500px"} width={"500px"} style={{borderRadius: "30%"}} src={algohallCover}/>
       <div className="welcome-text">
-        You need to <span onClick={() => connect()}>Connect</span> to continue
+        Please <span onClick={() => connect()}>Connect</span> your wallet to access this platform
       </div>
     </div>
   );
