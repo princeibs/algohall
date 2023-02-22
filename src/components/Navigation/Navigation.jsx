@@ -4,7 +4,7 @@ import { microAlgosToString, truncateAddress } from "../../utils/conversions";
 import "./Navigation.scss";
 
 const Navigation = ({ balance, address, disconnect }) => {
-
+  const nav = useNavigate()
   return (
     <>
       <div className="app__nav">
@@ -22,7 +22,7 @@ const Navigation = ({ balance, address, disconnect }) => {
           <div className="nav-end--profile">
             {truncateAddress(address)} | {microAlgosToString(balance)} ALGO
           </div>
-          <div className="nav-end--logout" onClick={() => disconnect()}>
+          <div className="nav-end--logout" onClick={() => {disconnect(); nav("/")}}>
             Disconnect
           </div>
         </div>
