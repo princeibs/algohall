@@ -5,6 +5,7 @@ import { truncateAddress } from "../../utils/conversions";
 import "./BlogDetails.scss";
 import { getBlog, tipAuthor } from "../../utils/actions";
 import { readingTime } from "reading-time-estimator";
+import { Loading } from "../../components";
 
 const BlogDetails = ({ address, fetchBalance }) => {
   const [coffeeQty, setCoffeeQty] = useState(1);
@@ -82,7 +83,7 @@ const BlogDetails = ({ address, fetchBalance }) => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loading/>
       )}
     </>
   );

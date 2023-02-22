@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Welcome } from "../";
+import { Loading } from '../../components';
 import { readingTime } from "reading-time-estimator";
 import { Link } from "react-router-dom";
 import coffeeImage from "../../assets/coffee_img.png";
 import { getAllBlogsAction } from '../../utils/actions';
 import { truncateAddress } from '../../utils/conversions';
 import "./Home.scss"
+
 
 const Home = ({connectWallet, address}) => {
     const [allBlogs, setAllBlogs] = useState(null)
@@ -70,7 +72,7 @@ const Home = ({connectWallet, address}) => {
                 ))}
               </div>
             ) : (
-              <div>Loading...</div>
+              <Loading/>
             )}
           </div>
         </>

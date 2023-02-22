@@ -57,8 +57,6 @@ const App = () => {
           <Route path="/blog/:appId" element={<BlogDetails address={address} fetchBalance={fetchBalance}/>} />
         </Routes>
       </Router>
-
-
     </>
   );
 };

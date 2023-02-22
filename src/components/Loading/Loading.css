@@ -1,0 +1,43 @@
+
+
+/* Box Container */
+.container {
+	margin: 0 auto;
+
+	width: 100%;
+	max-width: 720px;
+	min-height: 100vh;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+/* Keyframes Spin */
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Spinner */
+.spinner {
+	--spinner-color: black;
+
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+
+	animation-name: spin;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.spinner--dotted {
+	width: 38px;
+	border: 5px dotted var(--spinner-color);
+
+	animation-duration: 3s;
+}
