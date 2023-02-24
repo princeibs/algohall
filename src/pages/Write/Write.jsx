@@ -30,6 +30,11 @@ const Write = ({ address }) => {
 
     console.log(blogData)
 
+    if (String(blogContent).length > 1000) {
+      alert("Content should be less than 1000 words");
+      return;
+    }
+
     await createBlogAction(address, blogData)
       .then(() => {
         navigate("/");
@@ -53,13 +58,13 @@ const Write = ({ address }) => {
           <div className="write-edit">
             <input
               className="write-title"
-              placeholder="Blog title here"
+              placeholder="Title here"
               value={blogTitle}
               onChange={(e) => setBlogTitle(e.target.value)}
             />
             <textarea
               className="write-content"
-              placeholder="Blog content here"
+              placeholder="Content here (Should be less than 1000 characters)"
               value={blogContent}
               onChange={(e) => setBlogContent(e.target.value)}
             />
