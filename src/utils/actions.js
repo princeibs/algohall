@@ -176,6 +176,14 @@ export const getBlog = async (appId) => {
             })
         }
 
+        for (let i = 0; i < 100; i++) {
+            let fieldKey = i.toString()
+            if (getField(fieldKey, gbState) !== undefined) {
+                let fieldValue = getField(fieldKey, gbState).value.bytes;
+                content += base64ToUTF8String(fieldValue)
+            }
+        }
+
         if (getField("SLUG", gbState) !== undefined) {
             let field = getField("SLUG", gbState).value.bytes
             slug = base64ToUTF8String(field)
@@ -184,11 +192,6 @@ export const getBlog = async (appId) => {
         if (getField("TITLE", gbState) !== undefined) {
             let field = getField("TITLE", gbState).value.bytes
             title = base64ToUTF8String(field)
-        }
-
-        if (getField("CONTENT", gbState) !== undefined) {
-            let field = getField("CONTENT", gbState).value.bytes
-            content = base64ToUTF8String(field)
         }
 
         if (getField("THUMBNAIL", gbState) !== undefined) {
