@@ -27,7 +27,7 @@ export const algohallNote = "algohall:ui1"
 export const numLocalInts = 0;
 export const numLocalBytes = 0;
 // Maximum global storage allocation, immutable
-export const numGlobalInts = 2; // Global variables stored as Int: count, sold
-export const numGlobalBytes = 9; // Global variables stored as Bytes: name, description, image
+export const numGlobalInts = 2; // Global variables stored as Int
+export const numGlobalBytes = 11; // Global variables stored as Bytes
 
 export const ALGORAND_DECIMALS = 6;
