@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/algohall/static/css/main.d690eb1a.chunk.css",
+    "main.js": "/algohall/static/js/main.3dab813c.chunk.js",
+    "main.js.map": "/algohall/static/js/main.3dab813c.chunk.js.map",
+    "runtime-main.js": "/algohall/static/js/runtime-main.c4a35550.js",
+    "runtime-main.js.map": "/algohall/static/js/runtime-main.c4a35550.js.map",
+    "static/js/2.907ba134.chunk.js": "/algohall/static/js/2.907ba134.chunk.js",
+    "static/js/2.907ba134.chunk.js.map": "/algohall/static/js/2.907ba134.chunk.js.map",
+    "index.html": "/algohall/index.html",
+    "static/css/main.d690eb1a.chunk.css.map": "/algohall/static/css/main.d690eb1a.chunk.css.map",
+    "static/js/2.907ba134.chunk.js.LICENSE.txt": "/algohall/static/js/2.907ba134.chunk.js.LICENSE.txt",
+    "static/media/algohall_cover.4e61b276.jpeg": "/algohall/static/media/algohall_cover.4e61b276.jpeg",
+    "static/media/coffee_img.38659b77.png": "/algohall/static/media/coffee_img.38659b77.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c4a35550.js",
+    "static/js/2.907ba134.chunk.js",
+    "static/css/main.d690eb1a.chunk.css",
+    "static/js/main.3dab813c.chunk.js"
+  ]
+}
