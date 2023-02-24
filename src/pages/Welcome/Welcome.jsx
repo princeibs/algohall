@@ -9,7 +9,7 @@ const Welcome = ({connect}) => {
         <span>Algo Hall</span>
       </div>
       <div className="welcome-sub">
-        The all-in-one platform for micro blogging
+        The all-in-one platform to get all your updates on the Algorand blockchain
       </div>
       <img height={"500px"} width={"500px"} style={{borderRadius: "30%"}} src={algohallCover}/>
       <div className="welcome-text">

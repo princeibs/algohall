@@ -28,7 +28,10 @@ const Write = ({ address }) => {
       thumbnail: thumbnail,
     };
 
-    console.log(blogData)
+    if (String(blogTitle).length > 126 || String(thumbnail).length > 126) {
+      alert("Title or thumbnail URL should be less than 126 characters")
+      return;
+    }
 
     if (String(blogContent).length > 1000) {
       alert("Content should be less than 1000 words");
@@ -52,25 +55,25 @@ const Write = ({ address }) => {
             <input
               value={thumbnail}
               onChange={(e) => setThumbnail(e.target.value)}
-              placeholder="Enter thumbnail URL here"
+              placeholder="Enter thumbnail URL here (Less than 126 characters)"
             />
           </div>
           <div className="write-edit">
             <input
               className="write-title"
-              placeholder="Title here"
+              placeholder="Title here (Less than 126 characters)"
               value={blogTitle}
               onChange={(e) => setBlogTitle(e.target.value)}
             />
             <textarea
               className="write-content"
-              placeholder="Content here (Should be less than 1000 characters)"
+              placeholder="Write any update about the Algorand blockchain. It can be about Pyteal, Reach, algosdk, etc. (Should be less than 1000 characters)"
               value={blogContent}
               onChange={(e) => setBlogContent(e.target.value)}
             />
           </div>
           <button className="publish-btn" onClick={() => create()}>
-            Publish
+            Post Update
           </button>
         </div>
       </div>

@@ -24,7 +24,7 @@ int 4
 ==
 assert
 txn Note
-byte "algohall:uv0"
+byte "algohall:ui1"
 ==
 assert
 txna ApplicationArgs 2
