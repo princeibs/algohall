@@ -48,7 +48,7 @@ class Blog:
                 .ElseIf(length_of_bytes.load() > Int(127))
                 .Then(
                     Seq([
-                        # reduce bytes length by 125
+                        # reduce bytes length by 127
                         length_of_bytes.store(
                             length_of_bytes.load() - Int(127)),
 
@@ -75,8 +75,27 @@ class Blog:
 
     def application_creation(self): 
         return Seq([
+            
             Assert(Txn.application_args.length() == Int(4)),
-            Assert(Txn.note() == Bytes("algohall:ui1")),  
+            Assert(Txn.note() == Bytes("algohall:ui1")), 
+            # the following checks are carried out:
+            # 1. the slug is not an empty string
+            # 2. the title is not an empty string but also less than or equal to 126 bytes
+            # 3. the content is not an empty string but also less than or equal to 1000 bytes
+            # 4. the thumbnail is not an empty string but also less than or equal to 126 bytes
+            Assert(
+                And(
+                    Len(Txn.application_args[0]) > Int(0),
+                    Len(Txn.application_args[1]) > Int(0),
+                    Len(Txn.application_args[3]) > Int(0),
+                    Len(Txn.application_args[2]) > Int(0),
+                ),
+                And(
+                    Len(Txn.application_args[1]) <= Int(126),
+                    Len(Txn.application_args[3]) <= Int(126),
+                    Len(Txn.application_args[2]) <= Int(1000),
+                ),
+            ),
             self.store_content(Txn.application_args[2]),          
             App.globalPut(self.Variables.slug, Txn.application_args[0]),
             App.globalPut(self.Variables.title, Txn.application_args[1]),
@@ -92,9 +111,11 @@ class Blog:
         Assert(
             And(
                 App.globalGet(self.Variables.author) != Txn.sender(),
+                Btoi(coffee) >= Int(1),
                 Global.group_size() == Int(2),
                 Gtxn[1].type_enum() == TxnType.Payment,
                 Gtxn[1].receiver() == App.globalGet(self.Variables.author),
+                Gtxn[1].amount() == Btoi(coffee) * Int(1000000),
             )
         )
 
